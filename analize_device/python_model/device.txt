@@ -1,0 +1,117 @@
+class sound_classifiy(recorder): recorder 상속. recorder로부터 30초 wav_file을 받아온다
+    
+    def __init__(self,file,detecter):
+        super().__init__(file,detecter)
+        
+    def keras_classify(wav_file):
+        if self.detecter==1:
+            keras모델(wav_file) 로 러닝시키기
+            return ({'비명확률': x%,
+                     '충돌확률': y%})
+        
+    def SST_transform(wav_file):
+        if self.detecter==1:
+            SST_data=wav_file을 SST로 변환한 최근 30초 데이터
+            return SST_data
+    
+        
+class recorder:
+    
+    def __init__(self,file,detecter):
+        self.file=file
+        self.detecter=detecter
+        
+    def execute_func():
+        global end
+        if end:
+            return
+        self.file=마이크데이터 wav_file로 변환#file라는 변수에 30초단위 wav_file 생성 및 대입
+        threading.Timer(second, execute_func, [second]).start()
+        
+    def __main__():
+        while True:
+            execute_func(30.0) #30초마다 마이크 데이터를 wav_file로 변환
+            if 마이크 데시벨 설정치 초과:#주파수 이상치로 해도 되고 아직 미정
+                self.detecter=1
+            else:
+                self.detecter=0
+                
+    if __name__ == '__main__':
+        main()
+
+class Live_gps:
+    
+    def __init__(self,gps):
+        self.gps=gps
+        
+    def execute_func():
+        global end
+        if end:
+            return
+        self.gps=gps데이터 저장 
+        threading.Timer(second, execute_func, [second]).start()
+        
+    def __main__():
+        while True:
+            execute_func(10.0)
+    
+    def GPS데이터():
+        return ({
+            '충돌 10초 전 위도':a1, '충돌 전 경도':b1,
+            '충돌 위도':a2, '충돌 경도':b2
+        }) # 저장된 GPS데이터를 가져온다
+                    
+    if __name__ == '__main__':
+        main()
+        
+    
+class 상황판단:
+    
+    soundclassify=sound_classification()
+    gpsdata=Live_gps()
+    
+    def Screaming_situation(soundclassify.keras_classify()):
+        if (keras_classify(wav_file)['비명확률']>70):
+            return ({'비명상황':soundclassify.keras_classify()['비명확률']})
+        else:
+            return ({'비명상황':'비명상황 아님'})
+        
+    def Conflict_situation(soundclassify.keras_classify()):
+        if (keras_classify(wav_file)['충돌확률']>70):
+            충돌당시초속=(np.sqrt((gpsdata.GPS데이터()['충돌 10초 전 위도']-gpsdata.GPS데이터()['충돌 위도'])**2+(gpsdata.GPS데이터()['충돌 10초 전 경도']-gpsdata.GPS데이터()['충돌 경도'])**2))/10
+            충돌당시시속=3.6*충돌당시초속
+            return ({'충돌상황':[soundclassify.keras_classify()['충돌확률'],충돌당시시속],})
+        else: 
+            return ({'충돌상황':'충돌상황 아님'})
+        
+    def Gps_breakaway(gpsdata.GPS데이터()):
+        if GPS가 사전설정된 지역을 벗어났을때:#폴라곤으로 지역설정 혹은 API 사용
+            return ({'GPS이탈상황':True})
+        else:
+            return ({'GPS이탈상황':False})
+        
+    def Specific_word(soundclassify.SST_transform()):
+        if re.search("시라소니",soundclassify.SST_transform()).group(0)=='시라소니':
+            return({'사용자지정 위기상황':True})
+        else:
+            return({'사용자지정 위기상황':False})
+    
+    def main():
+        상황딕셔너리={}
+        상황딕셔너리.add({'비명상황' : Screaming_situation(soundclassify.keras_classify())['비명상황']})
+        상황딕셔너리.add({'충돌상황' : [Conflict_situation(soundclassify.keras_classify())['충돌상황']})
+        상황딕셔너리.add({'GPS이탈상황' : Gps_breakaway(soundclassify.keras_classify())['GPS이탈상황']})
+        상황딕셔너리.add({'사용자지정 위기상황' : Specific_word(soundclassify.keras_classify())['사용자지정 위기상황']})
+        return(상황딕셔너리)
+    
+    if __name__ == '__main__':
+        main()
+        
+class 상황대처:
+    
+    def 상황대처함수():
+        if ((상황딕셔너리['비명상황']=!'비명상황 아님')or(상황딕셔너리['충돌상황']=!'충돌상황 아님')or(상황딕셔너리['GPS이탈상황']==True)or(상황딕셔너리['사용자지정 위기상황']==True)):
+            상황딕셔너리를 APP으로 전송
+        else:
+            recorder() # 위기 상황이 아니면 recorder class를 이용해 지속적으로 녹음한다.
+
