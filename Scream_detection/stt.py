@@ -1,4 +1,3 @@
-
 # coding: utf-8
 
 # In[6]:
@@ -38,3 +37,6 @@ def texting():
     while isEnd:
         stt()
 
+
+if __name__ == "__main__":
+    recording()

@@ -76,3 +76,8 @@ def recording():
     while isEnd:
         oneSecondRec(timenow())
 
+
+if __name__ == "__main__":
+    recording()
+
+
