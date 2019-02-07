@@ -19,7 +19,7 @@ except socket.error as err :
  
 temp="it's ok man"
 msg=bytearray(temp,'utf-8')
-HOST='192.168.35.197'
+HOST='192.168.43.246'
 port=1024
 s.bind((HOST,port))
 print("%d 포트로 연결을 기다리는중"%(port))
