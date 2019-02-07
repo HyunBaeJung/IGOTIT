@@ -17,9 +17,9 @@ try:
 except socket.error as err :
     print("에러 발생 원인 :  %s"%(err))
  
-temp="it's ok man"
+temp="danger"
 msg=bytearray(temp,'utf-8')
-HOST='192.168.35.197'
+HOST='192.168.22.126'
 port=1024
 s.bind((HOST,port))
 print("%d 포트로 연결을 기다리는중"%(port))
